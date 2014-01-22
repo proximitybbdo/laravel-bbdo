@@ -19,7 +19,7 @@
 
   <script src="<?= asset('assets/js/vendor/modernizr.min.js'); ?>"></script>
 </head>
-<body data-page="">
+<body data-page="<?= Helpers::clean_segments(); ?>">
   <script type="text/javascript">
     window.site = {};
     window.site.lang = '<?= App::getLocale(); ?>';
