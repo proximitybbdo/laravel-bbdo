@@ -5,7 +5,7 @@ return array(
   'admin' => array(
     'username' => 'bbdo',
     'email' => 'online@bbdo.be',
-    'password' => 'ddt4ever'
+    'password' => ''
   ),
 
 	/*
