@@ -1,0 +1,65 @@
+@charset "UTF-8"
+
+// ;
+
+@import "compass/utilities"
+@import "compass/reset"
+@import "compass/css3"
+@import "vendor/_grid.scss"
+
+// **************************************************
+
+$total_width: 100%
+$total_columns: 12
+$container_margin: 2%
+$gutter_width: 6%
+$max_width: 960px
+
+// **************************************************
+
+@mixin grid-container
+  width: $total_width
+  max-width: $max_width
+  margin: 0 auto !important
+  +container
+  +pie-clearfix
+
+@mixin subgrid
+  margin: 0  !important
+  width: 100% !important
+  position: relative
+  +container
+  +pie-clearfix
+
+@mixin row
+  +pie-clearfix
+
+// **************************************************
+
+.clearfix
+  +pie-clearfix
+
+.container
+  +grid-container
+
+  position: relative
+
+.grid-container
+  +grid-container
+
+  position: relative
+  width: 100%
+
+.subgrid
+  +subgrid
+
+.row
+  +row
+
+*
+  +box-sizing(border-box)
+
+// **************************************************
+
+body
+  font-family: Arial
