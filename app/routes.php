@@ -14,6 +14,15 @@
 // Global lang param for nl-BE and nl_BE
 Route::pattern('lang', '^[a-z]{2}[-|_][A-Z]{2}$');
 
+// *****************************************************
+
+// Filters
+Route::filter('check_lang', 'LangFilter');
+
+Route::when('*', 'check_lang');
+
+// *****************************************************
+
 Route::get('', 'HomeController@get_index');
 Route::get('{lang}', 'HomeController@get_index');
 Route::get('{lang}/done', 'HomeController@get_done');

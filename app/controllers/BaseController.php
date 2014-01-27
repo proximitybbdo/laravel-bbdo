@@ -24,10 +24,6 @@ class BaseController extends Controller
       return;
     }
 
-    if(!is_dir(app_path() . '/lang/' . $param_lang)) {
-      return Redirect::to('nl-BE');
-    }
-
     App::setLocale($param_lang);
   }
 }
