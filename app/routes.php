@@ -25,7 +25,10 @@ Route::when('*', 'check_lang');
 
 Route::get('', 'HomeController@get_index');
 Route::get('{lang}', 'HomeController@get_index');
-Route::get('{lang}/done', 'HomeController@get_done');
+
+Route::get('{lang}/contact', 'HomeController@get_contact');
+Route::get('{lang}/contact/thanks', 'HomeController@get_contact_thanks');
+Route::post('{lang}/contact', 'HomeController@post_contact');
 
 Route::group(array('prefix' => 'admin'), function() {
   Route::get('', 'AdminController@get_index');

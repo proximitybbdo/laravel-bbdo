@@ -54,9 +54,49 @@ class YmlLoader implements \Illuminate\Translation\LoaderInterface {
 		}
 		else
 		{
-			// namespace yml not implemented 
-			return "";
+			return $this->loadNamespaced($locale, $group, $namespace);
 		}
+	}
+
+	/**
+	 * Load a local namespaced translation group for overrides.
+	 *
+	 * @param  array  $lines
+	 * @param  string  $locale
+	 * @param  string  $group
+	 * @param  string  $namespace
+	 * @return array
+	 */
+	protected function loadNamespaceOverrides(array $lines, $locale, $group, $namespace)
+	{
+		$file = "{$this->path}/packages/{$locale}/{$namespace}/{$group}.yml";
+
+		if ($this->files->exists($file))
+		{
+			return array_replace_recursive($lines, $this->files->getRequire($file));
+		}
+
+		return $lines;
+	}
+
+	/**
+	 * Load a namespaced translation group.
+	 *
+	 * @param  string  $locale
+	 * @param  string  $group
+	 * @param  string  $namespace
+	 * @return array
+	 */
+	protected function loadNamespaced($locale, $group, $namespace)
+	{
+		if (isset($this->hints[$namespace]))
+		{
+			$lines = $this->loadPath($this->hints[$namespace], $locale, $group);
+
+			return $this->loadNamespaceOverrides($lines, $locale, $group, $namespace);
+		}
+
+		return array();
 	}
 
 
