@@ -8,6 +8,6 @@ class YamlTranslator extends Facade
 {
     protected static function getFacadeAccessor()
     {
-        return 'YamlTranslator';
+        return 'translator';
     }
 }
