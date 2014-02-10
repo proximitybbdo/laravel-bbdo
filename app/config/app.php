@@ -115,7 +115,6 @@ return array(
 		'Illuminate\Workbench\WorkbenchServiceProvider',
 		'Bbdo\YmlTranslator\YmlTranslatorServiceProvider',
 		'Bbdo\Yaml\YamlServiceProvider',
-
 	),
 
 	/*
@@ -181,7 +180,7 @@ return array(
 		'Validator'       => 'Illuminate\Support\Facades\Validator',
 		'View'            => 'Illuminate\Support\Facades\View',
 		'Lang'            => 'Bbdo\YamlTranslator\Facades\YamlTranslator',
-		'Yaml'			  => 'Bbdo\Yaml\Facades\Yaml'
+		'Yaml'			  		=> 'Bbdo\Yaml\Facades\Yaml'
 
 	),
 
