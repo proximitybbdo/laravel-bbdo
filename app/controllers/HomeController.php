@@ -22,6 +22,8 @@ class HomeController extends BaseController
     $rules = array(
       'firstname' => 'required',
       'lastname' => 'required',
+      'file' => 'size:1024',
+      'file' => 'mimes:jpeg,bmp,png'
     );
 
     $validator = Validator::make(Input::all(), $rules);
@@ -30,6 +32,14 @@ class HomeController extends BaseController
       return Redirect::to(Helpers::url_lang('contact#errors'))
         ->withErrors($validator)
         ->withInput();
+    }
+
+    //file upload
+    if(Input::hasFile("file")){
+      if(Input::file("file")->getSize() < 1048576) {
+        $filename = Input::file('file')->getClientOriginalName();
+        Input::file("file")->move(app_path().'/uploads',$filename);
+      }
     }
 
     $reg = new Registration;

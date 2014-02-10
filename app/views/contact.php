@@ -3,7 +3,7 @@
 
 <div class="contact">
   <div class="contact__form">
-    <?= Form::open(array('url' => Helpers::url_lang('contact'))); ?>
+    <?= Form::open(array('url' => Helpers::url_lang('contact'),'enctype'=>"multipart/form-data")); ?>
       <?php if(!$errors->isEmpty()): ?>
         <div class="errors" id="errors">
           <h2><?= trans('site.contact.error'); ?></h2>
@@ -15,6 +15,7 @@
       <?= Form::text('firstname', '', array('placeholder' => trans('site.contact.fields.firstname'))); ?><br/>
       <?= Form::text('lastname', '', array('placeholder' => trans('site.contact.fields.lastname'))); ?><br/>
       <?= Form::textarea('question', '', array('placeholder' => trans('site.contact.fields.question'))); ?><br/>
+      <?= Form::file('file', array('placeholder' => trans('site.contact.fields.file'))); ?><br/>
       <br/>
       <?= Form::submit(trans('site.contact.submit'), array('class' => 'btn')); ?>
 

@@ -27,7 +27,7 @@ Route::get('', 'HomeController@get_index');
 Route::get('{lang}', 'HomeController@get_index');
 
 Route::get('{lang}/contact', 'HomeController@get_contact');
-Route::get('{lang}/contact/thanks', 'HomeController@get_contact_thanks');
+Route::get('{lang}/contact_thanks', 'HomeController@get_contact_thanks');
 Route::post('{lang}/contact', 'HomeController@post_contact');
 
 Route::group(array('prefix' => 'admin'), function() {

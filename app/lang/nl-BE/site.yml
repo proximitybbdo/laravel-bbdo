@@ -12,6 +12,7 @@ contact:
       firstname: FIRSTNAME
       lastname: LASTNAME
       question: QUESTION
+      file: FILE
     submit: SEND
 
     title_thx: THANKS FOR WRITING US
