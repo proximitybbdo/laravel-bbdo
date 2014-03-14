@@ -24,12 +24,12 @@ class Helpers
     $path = '';
 
     if(is_array($parts)) {
-        foreach($parts as $part) {
-                $path .= '/' . $part;
-                    }
-      } else if(!is_null($parts)) {
-          $path = '/' . $parts;
-        }
+      foreach($parts as $part) {
+        $path .= '/' . $part;
+      }
+    } else if(!is_null($parts)) {
+      $path = '/' . $parts;
+    }
 
     return url(App::getLocale() . $path);
   }

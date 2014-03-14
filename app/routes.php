@@ -25,7 +25,6 @@ Route::when('*', 'check_lang');
 
 Route::get('', 'HomeController@get_index');
 Route::get('{lang}', 'HomeController@get_index');
-Route::get('{lang}/done', 'HomeController@get_done');
 
 Route::group(array('prefix' => 'admin'), function() {
   Route::get('', 'AdminController@get_index');

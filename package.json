@@ -8,8 +8,10 @@
     "grunt": "~0.4.1",
     "matchdep": "*",
 
+    "grunt-sass": "*",
+    "grunt-sass-convert": "*",
+
     "grunt-contrib-coffee": "*",
-    "grunt-contrib-compass": "*",
     "grunt-contrib-watch": "*",
     "grunt-contrib-imagemin": "*",
     "grunt-contrib-clean": "*",

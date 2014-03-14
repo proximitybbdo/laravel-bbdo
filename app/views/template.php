@@ -1,5 +1,4 @@
 <!doctype html>
-<!--[if IE 7]> <html class="no-js ie7" lang="<?= App::getLocale(); ?>"> <![endif]-->
 <!--[if IE 8]> <html class="no-js ie8" lang="<?= App::getLocale(); ?>"> <![endif]-->
 <!--[if IE 9]> <html class="no-js ie9" lang="<?= App::getLocale(); ?>"> <![endif]-->
 <!--[if gt IE 9]><!--> <html class="no-js" lang="<?= App::getLocale(); ?>"> <!--<![endif]-->
@@ -16,8 +15,6 @@
   <link rel="shortcut icon" href="<?= asset('assets/img/icon/favicon.png'); ?>" />
   <link rel="apple-touch-icon" href="<?= asset('assets/img/icon/apple-touch-icon.png'); ?>" />
   <link rel="stylesheet" href="<?= asset('assets/css/style.css'); ?>" />
-
-  <script src="<?= asset('assets/js/vendor/modernizr.min.js'); ?>"></script>
 </head>
 <body data-page="<?= Helpers::clean_segments(); ?>">
   <script type="text/javascript">
@@ -29,7 +26,6 @@
   <?= $content; ?>
 
   <script src="<?= asset('assets/js/vendor/jquery.min.js'); ?>"></script>
-  <script src="<?= asset('assets/js/lib/tracking.js'); ?>"></script>
   <script src="<?= asset('assets/js/main.js'); ?>"></script>
 
   <script>

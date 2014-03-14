@@ -4,12 +4,15 @@ module.exports = (grunt) ->
     pkg: grunt.file.readJSON('package.json')
 
     config:
-      src: 'assets/coffee'
-      dest: 'assets/js'
+      src:
+        js: 'assets/coffee'
+      dest:
+        js: 'assets/js'
+        css: 'assets/css'
 
     clean:
       build:
-        src: ['<%= config.dest %>/*', '!<%= config.dest %>/vendor']
+        src: ['<%= config.dest.js %>/*', '!<%= config.dest.js %>/vendor']
 
     notify:
       watch_coffee:
@@ -21,36 +24,34 @@ module.exports = (grunt) ->
           title: "Watch Sass"
           message: "Sass watch completed"
 
-    compass:
-      dist:
+    'sass-convert':
+      options:
+        from: 'sass'
+        to: 'scss'
+      files:
+        src: ['<%= config.dest.css %>/style.sass']
+        dest: '.'
+
+    sass:
+      app:
         options:
-          sassDir: 'assets/css'
-          cssDir: 'assets/css'
-          imagesDir: 'assets/img'
-          fontsDir: 'assets/fonts'
-          noLineComments: true
-          httpPath: "/"
-          relativeAssets: true
-          boring: true
-          debugInfo: true
           outputStyle: 'compressed'
-          time: true
-          # enable_sourcemaps: true
-          raw: '{:preferred_syntax => :sass, :sourcemap => true}\n'
-          require: []
+          # sourceComments: 'map'
+        files:
+          '<%= config.dest.css %>/style.css': '<%= config.dest.css %>/style.scss'
 
     'concat':
       all:
         src: [
-          '<%= config.dest %>/vendor/jquery.min.js'
-          '<%= config.dest %>/app.js'
+          '<%= config.dest.js %>/vendor/jquery.min.js'
+          '<%= config.dest.js %>/app.js'
         ]
-        dest: '<%= config.dest %>/main.js'
+        dest: '<%= config.dest.js %>/main.js'
 
     uglify:
       app:
         files:
-          'assets/js/main.min.js': ['assets/js/main.js']
+          '<%= config.dest.js %>/main.min.js': ['<%= config.dest.js %>/main.js']
 
     coffee:
       app:
@@ -59,7 +60,7 @@ module.exports = (grunt) ->
           bare: false
           join: true
         files:
-          '<%= config.dest %>/main.js': ['<%= config.src %>/**/*.coffee']
+          '<%= config.dest.js %>/main.js': ['<%= config.src.js %>/**/*.coffee']
 
     imagemin:
       dist:
@@ -77,20 +78,21 @@ module.exports = (grunt) ->
         spawn: false
         interrupt: true
         atBegin: true
-        interval: 500
+        interval: 200
       app:
-        files: ['<%= config.src %>/**/*.coffee']
+        files: ['<%= config.src.js %>/**/*.coffee']
         tasks: ['coffee', 'notify:watch_coffee']
       sass:
-        files: ['assets/css/*.sass']
+        files: ['<%= config.src.css %>/*.sass']
         tasks: ['compass', 'notify:watch_sass']
 
     concurrent:
-      compile: ['compass', 'coffee', 'concat', 'uglify']
+      compile: ['sass-compile', 'coffee', 'concat', 'uglify']
       optimize: ['imagemin']
 
   require('matchdep').filterDev('grunt-*').forEach grunt.loadNpmTasks
 
   # Tasks
   grunt.registerTask 'default', ['concurrent:compile']
+  grunt.registerTask 'sass-compile', ['sass-convert', 'sass:app']
   grunt.registerTask 'production', ['clean', 'concurrent:compile', 'concurrent:optimize']
