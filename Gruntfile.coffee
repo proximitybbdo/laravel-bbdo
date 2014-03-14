@@ -83,7 +83,7 @@ module.exports = (grunt) ->
         files: ['<%= config.src.js %>/**/*.coffee']
         tasks: ['coffee', 'notify:watch_coffee']
       sass:
-        files: ['<%= config.src.css %>/*.sass']
+        files: ['<%= config.dest.css %>/*.sass']
         tasks: ['sass-compile', 'notify:watch_sass']
 
     concurrent:
