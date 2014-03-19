@@ -23,7 +23,7 @@ Route::when('*', 'check_lang');
 
 // *****************************************************
 
-Route::get('', 'HomeController@get_index');
+Route::get('', 'HomeController@get_lang');
 Route::get('{lang}', 'HomeController@get_index');
 
 Route::group(array('prefix' => 'admin'), function() {
