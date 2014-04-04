@@ -16,6 +16,7 @@ TEST
 
 !app/*/DEVELOPMENT
 !app/*/STAGE
+!app/*/STAGING
 !app/*/PRODUCTION
 !app/*/TEST
 node_modules
