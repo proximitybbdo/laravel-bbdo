@@ -1,0 +1,18 @@
+{
+    "name": "bbdo/yaml",
+    "description": "yaml parser for laravel 4",
+    "authors": [{        
+            "name": "bbdo",
+            "email": "online@bbdo.be"
+    }],
+    "require": {
+        "php": ">=5.3.0",
+        "symfony/yaml": "2.5.*@dev"
+    },
+    "autoload": {
+        "psr-0": {
+            "Bbdo\\Yaml": "src/"
+        }
+    },
+    "minimum-stability": "dev"
+}
