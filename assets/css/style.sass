@@ -45,21 +45,28 @@ $max_width: 960px
 // **************************************************
 
 @mixin grid-container
+  +container
+  +pie-clearfix
   width: $total_width
   max-width: $max_width
-  margin: 0 auto !important
-  +container
-  +pie-clearfix
+  margin: 0 auto 
 
 @mixin subgrid
-  margin: 0  !important
-  width: 100% !important
-  position: relative
   +container
   +pie-clearfix
+  margin: 0 
+  width: 100% 
+  
+@mixin background-image-retina($file, $type, $width, $height)
+ background-image: url($file + '.' + $type)
 
-@mixin row
-  +pie-clearfix
+ @media only screen and (-webkit-min-device-pixel-ratio: 2), only screen and (-moz-min-device-pixel-ratio: 2), only screen and (-o-min-device-pixel-ratio: 2/1), only screen and (min-device-pixel-ratio: 2), only screen and (min-resolution: 192dpi), only screen and (min-resolution: 2dppx)
+   &
+     background-image: url($file + '@2x.' + $type)
+     -webkit-background-size: $width $height
+     -moz-background-size: $width $height
+     -o-background-size: $width $height
+     background-size: $width $height
 
 // **************************************************
 
@@ -68,20 +75,20 @@ $max_width: 960px
 
 .container
   +grid-container
-
   position: relative
-
-.grid-container
-  +grid-container
-
-  position: relative
-  width: 100%
 
 .subgrid
   +subgrid
+   position: relative
 
-.row
-  +row
+.fontsmoothing
+  -webkit-font-smoothing: antialiased
+  -moz-font-smoothing: antialiased
+  -ms-font-smoothing: antialiased
+  font-smoothing: antialiased
+
+.no-flick
+  +transform(translate3D(0, 0, 0))
 
 *
   +box-sizing(border-box)
