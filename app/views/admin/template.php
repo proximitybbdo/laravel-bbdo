@@ -44,7 +44,6 @@
 
     <footer>
       <p>&copy; BBDO 2014</p>
-      <small>Version: <?= ''; ?></small>
       <br />
       <small>Environment: <?= e(App::environment()); ?></small>
     </footer>
