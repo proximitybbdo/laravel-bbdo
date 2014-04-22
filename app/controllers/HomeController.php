@@ -7,7 +7,7 @@ class HomeController extends BaseController
   }
   
   public function get_lang() {
-    return Redirect::to('/' . Config::get('app.locale'));
+    return Redirect::to(Config::get('app.locale'));
   }
 
   public function get_index() {
