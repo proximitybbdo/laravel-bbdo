@@ -11,7 +11,6 @@ class HomeController extends BaseController
   }
 
   public function get_index() {
-    $i = $j / 2;
     $this->layout->content = View::make('index', $this->data);
   }
 }
