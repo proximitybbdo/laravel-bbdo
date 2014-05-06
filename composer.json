@@ -17,6 +17,9 @@
 			"app/tests/TestCase.php"
 		]
 	},
+  "psr-0": {
+    "Bbdo": "app/library"
+  },
 	"scripts": {
 		"post-install-cmd": [
 			"php artisan clear-compiled",
