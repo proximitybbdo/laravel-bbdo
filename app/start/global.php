@@ -52,6 +52,13 @@ Log::useFiles(storage_path().'/logs/laravel.log');
 App::error(function(Exception $exception, $code)
 {
 	Log::error($exception);
+
+  $monolog = Log::getMonolog();
+
+  $client = new Raven_Client(Config::get('app.sentry'));
+  $handler = new Monolog\Handler\RavenHandler($client, Monolog\Logger::ERROR);
+  $handler->setFormatter(new Monolog\Formatter\LineFormatter("%message% %context% %extra%\n"));
+  $monolog->pushHandler($handler);
 });
 
 /*
