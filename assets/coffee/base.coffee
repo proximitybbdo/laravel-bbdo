@@ -29,3 +29,26 @@ class BBDO.Site
 
 $(document).ready ->
   window.site.app = new BBDO.Site $('body')
+
+  $(document).on "click", "a[href]", (e) ->
+    href = $(this).prop "href"
+    to_frame = $(this).prop("target") == '_blank'
+    root = window.location.protocol + "//" + window.location.host
+
+    if href.slice(0, root.length) != root
+      e.preventDefault() unless to_frame
+
+      ga(
+        'send',
+        'event',
+        'outbound',
+        'click',
+        href,
+        {
+          'hitCallback': () =>
+            unless to_frame
+              document.location = href
+        }
+      )
+
+      false unless to_frame
