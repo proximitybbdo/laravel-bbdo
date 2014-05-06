@@ -30,6 +30,7 @@ class BBDO.Site
 $(document).ready ->
   window.site.app = new BBDO.Site $('body')
 
+  # tracking
   $(document).on "click", "a[href]", (e) ->
     href = $(this).prop "href"
     to_frame = $(this).prop("target") == '_blank'
