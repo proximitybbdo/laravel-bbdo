@@ -60,7 +60,7 @@ module.exports = (grunt) ->
           bare: false
           join: true
         files:
-          '<%= config.dest.js %>/main.js': ['<%= config.src.js %>/**/*.coffee']
+          '<%= config.dest.js %>/app.js': ['<%= config.src.js %>/**/*.coffee']
 
     imagemin:
       dist:

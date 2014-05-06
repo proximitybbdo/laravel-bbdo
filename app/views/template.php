@@ -25,8 +25,12 @@
 
   <?= $content; ?>
 
-  <script src="<?= asset('assets/js/vendor/jquery.min.js'); ?>"></script>
-  <script src="<?= asset('assets/js/main.js'); ?>"></script>
+  <?php if(App::environment() == 'production'): ?>
+    <script src="<?= asset('assets/js/main.min.js'); ?>"></script>
+  <?php else: ?>
+    <script src="<?= asset('assets/js/vendor/jquery.min.js'); ?>"></script>
+    <script src="<?= asset('assets/js/app.js'); ?>"></script>
+  <?php endif; ?>
 
   <script>
     (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
