@@ -55,7 +55,7 @@ App::error(function(Exception $exception, $code)
 
   $client = new Raven_Client(Config::get('app.sentry'));
 
-  $handler = new Monolog\Handler\RavenHandler($client, Monolog\Logger::INFO);
+  $handler = new Monolog\Handler\RavenHandler($client, Monolog\Logger::ERROR);
   $handler->setFormatter(new Monolog\Formatter\LineFormatter("%message% %context% %extra%\n"));
   $monolog->pushHandler($handler);
 

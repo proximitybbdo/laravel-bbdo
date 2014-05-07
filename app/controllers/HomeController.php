@@ -11,6 +11,6 @@ class HomeController extends BaseController
   }
 
   public function get_index() {
-    $this->layout->content = View::make('index2', $this->data);
+    $this->layout->content = View::make('index', $this->data);
   }
 }
