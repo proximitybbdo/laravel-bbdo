@@ -51,15 +51,17 @@ Log::useFiles(storage_path().'/logs/laravel.log');
 
 App::error(function(Exception $exception, $code)
 {
-  $monolog = Log::getMonolog();
+  if(App::environment() != 'development') {
+    $monolog = Log::getMonolog();
 
-  $client = new Raven_Client(Config::get('app.sentry'));
+    $client = new Raven_Client(Config::get('app.sentry'));
 
-  $handler = new Monolog\Handler\RavenHandler($client, Monolog\Logger::ERROR);
-  $handler->setFormatter(new Monolog\Formatter\LineFormatter("%message% %context% %extra%\n"));
-  $monolog->pushHandler($handler);
+    $handler = new Monolog\Handler\RavenHandler($client, Monolog\Logger::ERROR);
+    $handler->setFormatter(new Monolog\Formatter\LineFormatter("%message% %context% %extra%\n"));
+    $monolog->pushHandler($handler);
 
-	Log::error($exception);
+    Log::error($exception);
+  }
 });
 
 /*
