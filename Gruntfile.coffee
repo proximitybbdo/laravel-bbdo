@@ -62,17 +62,6 @@ module.exports = (grunt) ->
         files:
           '<%= config.dest.js %>/app.js': ['<%= config.src.js %>/**/*.coffee']
 
-    imagemin:
-      dist:
-        options:
-          optimizationLevel: 3
-        files: [
-            expand: true,
-            cwd: "assets/img/",
-            src: "**/*.{png,jpg,jpeg}"
-            dest: "assets/img/"
-        ]
-
     watch:
       options:
         spawn: false
@@ -88,7 +77,7 @@ module.exports = (grunt) ->
 
     concurrent:
       compile: ['sass-compile', 'coffee', 'concat', 'uglify']
-      optimize: ['imagemin']
+      optimize: []
 
   require('matchdep').filterDev('grunt-*').forEach grunt.loadNpmTasks
 
