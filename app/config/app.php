@@ -3,12 +3,12 @@
 return array(
 
   'admin' => array(
-    'username' => 'bbdo',
-    'email' => 'online@bbdo.be',
-    'password' => ''
+    'username' => 'drive-o-lution',
+    'email' => '',
+    'password' => '4X&6mE'
   ),
 
-  'sentry' => 'https://562e874daec24a73abb6f2502142ebe3:048ac2157ebf4c788552b4ed9b0d4d32@app.getsentry.com/2251',
+  'sentry' => '',
 
   'ga' => 'xx',
 

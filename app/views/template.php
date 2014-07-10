@@ -5,8 +5,8 @@
 <head>
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-  <meta name="description" content="BBDO" />
-  <meta name="author" content="BBDO" />
+  <meta name="description" content="" />
+  <meta name="author" content="" />
   <meta name="e" content="<?= App::environment(); ?>" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 

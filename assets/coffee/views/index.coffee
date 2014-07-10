@@ -1,3 +1,3 @@
-class BBDO.Index extends BBDO.Base
+class Drivolution.Index extends Drivolution.Base
   constructor: () ->
     super()

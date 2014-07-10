@@ -1,3 +1,3 @@
-class BBDO.Base
+class Drivolution.Base
   constructor: () ->
     # niets
