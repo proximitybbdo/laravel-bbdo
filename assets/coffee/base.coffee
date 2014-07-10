@@ -1,8 +1,8 @@
-window.Drivolution ?= {
+window.BBDO ?= {
   Events: {},
 }
 
-class Drivolution.Site
+class BBDO.Site
   current_page: null
   $el: null
 
@@ -21,14 +21,14 @@ class Drivolution.Site
   route: (page) ->
     switch page
       when ''
-        @current_page = new Drivolution.Index()
+        @current_page = new BBDO.Index()
       else
-        @current_page = new Drivolution.Base()
+        @current_page = new BBDO.Base()
 
   init_shared: ->
 
 $(document).ready ->
-  window.site.app = new Drivolution.Site $('body')
+  window.site.app = new BBDO.Site $('body')
 
   # tracking
   $(document).on "click", "a[href]", (e) ->

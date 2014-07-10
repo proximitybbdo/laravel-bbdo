@@ -2,13 +2,13 @@
   var __hasProp = {}.hasOwnProperty,
     __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
 
-  if (window.Drivolution == null) {
-    window.Drivolution = {
+  if (window.BBDO == null) {
+    window.BBDO = {
       Events: {}
     };
   }
 
-  Drivolution.Site = (function() {
+  BBDO.Site = (function() {
     Site.prototype.current_page = null;
 
     Site.prototype.$el = null;
@@ -31,9 +31,9 @@
     Site.prototype.route = function(page) {
       switch (page) {
         case '':
-          return this.current_page = new Drivolution.Index();
+          return this.current_page = new BBDO.Index();
         default:
-          return this.current_page = new Drivolution.Base();
+          return this.current_page = new BBDO.Base();
       }
     };
 
@@ -44,7 +44,7 @@
   })();
 
   $(document).ready(function() {
-    window.site.app = new Drivolution.Site($('body'));
+    window.site.app = new BBDO.Site($('body'));
     return $(document).on("click", "a[href]", function(e) {
       var href, root, to_frame;
       href = $(this).prop("href");
@@ -70,14 +70,14 @@
     });
   });
 
-  Drivolution.Base = (function() {
+  BBDO.Base = (function() {
     function Base() {}
 
     return Base;
 
   })();
 
-  Drivolution.Index = (function(_super) {
+  BBDO.Index = (function(_super) {
     __extends(Index, _super);
 
     function Index() {
@@ -86,7 +86,7 @@
 
     return Index;
 
-  })(Drivolution.Base);
+  })(BBDO.Base);
 
 }).call(this);
 

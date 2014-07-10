@@ -7,7 +7,7 @@ return array(
   'connections' => array(
     'mysql' => array(
 			'driver'    => 'mysql',
-      'host'      => '',
+      'host'      => 'BBDNS-DB02.bbdohosting.lcl',
 			'database'  => 'database',
 			'username'  => 'root',
 			'password'  => '',
