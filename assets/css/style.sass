@@ -17,6 +17,20 @@ $container_margin: 2%
 $gutter_width: 6%
 $max_width: 960px
 
+@mixin grid-container
+  +container
+  +pie-clearfix
+  width: $total_width
+  max-width: $max_width
+  margin: 0 auto
+  padding: 0 $container_margin
+
+@mixin subgrid
+  +container
+  +pie-clearfix
+  margin: 0
+  width: 100%
+
 .clearfix
   +pie-clearfix
 
