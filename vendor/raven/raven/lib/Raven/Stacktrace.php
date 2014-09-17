@@ -88,6 +88,11 @@ class Raven_Stacktrace
             // dont set this as an empty array as PHP will treat it as a numeric array
             // instead of a mapping which goes against the defined Sentry spec
             if (!empty($vars)) {
+                foreach ($vars as $key => $value) {
+                    if (is_string($value) || is_numeric($value)) {
+                        $vars[$key] = substr($value, 0, 1024);
+                    }
+                }
                 $frame['vars'] = $vars;
             }
 
@@ -125,6 +130,12 @@ class Raven_Stacktrace
             return array();
         }
 
+        if (strpos($frame['function'], '__lambda_func') !== false) {
+            return array();
+        }
+        if (isset($frame['class']) && $frame['class'] == 'Closure') {
+            return array();
+        }
         if (strpos($frame['function'], '{closure}') !== false) {
             return array();
         }
@@ -155,6 +166,13 @@ class Raven_Stacktrace
         foreach ($frame['args'] as $i => $arg) {
             if (isset($params[$i])) {
                 // Assign the argument by the parameter name
+                if (is_array($arg)) {
+                  foreach ($arg as $key => $value) {
+                    if (is_string($value) || is_numeric($value)) {
+                      $arg[$key] = substr($value, 0, 1024);
+                    }
+                  }
+                }
                 $args[$params[$i]->name] = $arg;
             } else {
                 // TODO: Sentry thinks of these as context locals, so they must be named
@@ -190,6 +208,16 @@ class Raven_Stacktrace
             $frame['lineno'] = $lineno = $matches[2];
         }
 
+        // In the case of an anonymous function, the filename is sent as:
+        // "</path/to/filename>(<lineno>) : runtime-created function"
+        // Extract the correct filename + linenumber from the string.
+        $matches = array();
+        $matched = preg_match("/^(.*?)\((\d+)\) : runtime-created function$/",
+            $filename, $matches);
+        if ($matched) {
+            $frame['filename'] = $filename = $matches[1];
+            $frame['lineno'] = $lineno = $matches[2];
+        }
 
         try {
             $file = new SplFileObject($filename);
