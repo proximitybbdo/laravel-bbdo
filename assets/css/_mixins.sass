@@ -68,11 +68,10 @@
 
 // generate the correct line height
 
-@mixin font-size($sizeValue: 1, $spaceValue: 1.45)
-  font-size: ($sizeValue * 10) + px
-  font-size: $sizeValue + rem
+@mixin font-size($sizeValue: 16, $spaceValue: 1.45)
+  font-size: $sizeValue + px
+  font-size: $sizeValue/16 + rem
   line-height: $spaceValue
-
 
 // vertical align the unknown
 

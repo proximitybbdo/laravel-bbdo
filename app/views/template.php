@@ -12,6 +12,18 @@
 
   <title><?= trans('site.title'); ?></title>
 
+  <!--[if lt IE 9]>
+  <script>
+    document.createElement('header');
+    document.createElement('nav');
+    document.createElement('section');
+    document.createElement('article');
+    document.createElement('aside');
+    document.createElement('footer');
+  </script>
+
+  <![endif]-->
+
   <link rel="shortcut icon" href="<?= asset('assets/img/icon/favicon.png'); ?>" />
   <link rel="apple-touch-icon" href="<?= asset('assets/img/icon/apple-touch-icon.png'); ?>" />
   <link rel="stylesheet" href="<?= asset('assets/css/style.css'); ?>" />
