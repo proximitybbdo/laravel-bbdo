@@ -18,6 +18,9 @@ use Symfony\Component\Console\Formatter\OutputFormatterStyle;
  * The Dialog class provides helpers to interact with the user.
  *
  * @author Fabien Potencier <fabien@symfony.com>
+ *
+ * @deprecated Deprecated since version 2.5, to be removed in 3.0.
+ *             Use the question helper instead.
  */
 class DialogHelper extends InputAwareHelper
 {
@@ -150,7 +153,8 @@ class DialogHelper extends InputAwareHelper
 
                     // Pop the last character off the end of our string
                     $ret = substr($ret, 0, $i);
-                } elseif ("\033" === $c) { // Did we read an escape sequence?
+                } elseif ("\033" === $c) {
+                    // Did we read an escape sequence?
                     $c .= fread($inputStream, 2);
 
                     // A = Up Arrow. B = Down Arrow
