@@ -52,6 +52,7 @@
 
   <script src="<?= asset('assets/js/vendor/jquery.min.js'); ?>"></script>
   <script src="<?= asset('assets/js/vendor/bootstrap.js'); ?>"></script>
+    <script src="<?= asset('assets/js/admin/main.js'); ?>"></script>
 
   <script type="text/javascript">
     (function($) {
