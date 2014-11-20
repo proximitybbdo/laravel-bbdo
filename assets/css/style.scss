@@ -4,37 +4,10 @@
 
 // **************************************************
 
-@mixin clearfix {
-  *zoom: 1;
-  overflow: hidden;
-}
-
-@mixin legacy-pie-clearfix {
-  *zoom: 1;
-  &:after {
-    content: "\0020";
-    display: block;
-    height: 0;
-    clear: both;
-    overflow: hidden;
-    visibility: hidden;
-  }
-}
-
-@mixin pie-clearfix {
-  *zoom: 1;
-  &:after {
-    content: "";
-    display: table;
-    clear: both;
-  }
-}
-
-// **************************************************
-
 @import "reset";
 @import "grid";
 @import "bourbon/bourbon";
+@import "mixins";
 
 // **************************************************
 
@@ -44,14 +17,13 @@ $container_margin: 2%;
 $gutter_width: 6%;
 $max_width: 960px;
 
-// **************************************************
-
 @mixin grid-container {
   @include container;
   @include pie-clearfix;
   width: $total_width;
   max-width: $max_width;
   margin: 0 auto;
+  padding: 0 $container_margin;
 }
 
 @mixin subgrid {
@@ -60,21 +32,6 @@ $max_width: 960px;
   margin: 0;
   width: 100%;
 }
-
-@mixin background-image-retina($file, $type, $width, $height) {
-  background-image: url($file + "." + $type);
-  @media only screen and (-webkit-min-device-pixel-ratio: 2), only screen and (-moz-min-device-pixel-ratio: 2), only screen and (-o-min-device-pixel-ratio: 2 / 1), only screen and (min-device-pixel-ratio: 2), only screen and (min-resolution: 192dpi), only screen and (min-resolution: 2dppx) {
-    & {
-      background-image: url($file + "@2x." + $type);
-      -webkit-background-size: $width $height;
-      -moz-background-size: $width $height;
-      -o-background-size: $width $height;
-      background-size: $width $height;
-    }
-  }
-}
-
-// **************************************************
 
 .clearfix {
   @include pie-clearfix;
@@ -88,17 +45,6 @@ $max_width: 960px;
 .subgrid {
   @include subgrid;
   position: relative;
-}
-
-.fontsmoothing {
-  -webkit-font-smoothing: antialiased;
-  -moz-font-smoothing: antialiased;
-  -ms-font-smoothing: antialiased;
-  font-smoothing: antialiased;
-}
-
-.no-flick {
-  @include transform(translate3D(0, 0, 0));
 }
 
 * {

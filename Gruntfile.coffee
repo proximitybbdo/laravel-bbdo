@@ -3,16 +3,17 @@ module.exports = (grunt) ->
   grunt.initConfig
     pkg: grunt.file.readJSON('package.json')
 
-    config:
+    c:
       src:
         js: 'assets/coffee'
+        tpl: 'assets/coffee/templates'
       dest:
         js: 'assets/js'
         css: 'assets/css'
 
     clean:
       build:
-        src: ['<%= config.dest.js %>/*', '!<%= config.dest.js %>/vendor']
+        src: ['<%= c.dest.js %>/*', '!<%= c.dest.js %>/vendor']
 
     notify:
       watch_coffee:
@@ -29,7 +30,7 @@ module.exports = (grunt) ->
         from: 'sass'
         to: 'scss'
       files:
-        src: ['<%= config.dest.css %>/style.sass']
+        src: ['<%= c.dest.css %>/style.sass']
         dest: '.'
 
     sass:
@@ -38,20 +39,28 @@ module.exports = (grunt) ->
           outputStyle: 'compressed'
           # sourceComments: 'map'
         files:
-          '<%= config.dest.css %>/style.css': '<%= config.dest.css %>/style.scss'
+          '<%= c.dest.css %>/style.css': '<%= c.dest.css %>/style.scss'
+
+    browserify:
+      build:
+        src: ['<%= c.src %>/**/*.coffee', '<%= c.src.tpl %>/**/*.js']
+        dest: '<%= c.dest.js %>/app.js'
+        options:
+          extensions: ['.coffee', '.js']
+          transform: ['coffeeify']
 
     'concat':
       all:
         src: [
-          '<%= config.dest.js %>/vendor/jquery.min.js'
-          '<%= config.dest.js %>/app.js'
+          '<%= c.dest.js %>/vendor/jquery.min.js'
+          '<%= c.dest.js %>/app.js'
         ]
-        dest: '<%= config.dest.js %>/main.js'
+        dest: '<%= c.dest.js %>/main.js'
 
     uglify:
       app:
         files:
-          '<%= config.dest.js %>/main.min.js': ['<%= config.dest.js %>/main.js']
+          '<%= c.dest.js %>/main.min.js': ['<%= c.dest.js %>/main.js']
 
     coffee:
       app:
@@ -60,7 +69,7 @@ module.exports = (grunt) ->
           bare: false
           join: true
         files:
-          '<%= config.dest.js %>/app.js': ['<%= config.src.js %>/**/*.coffee']
+          '<%= c.dest.js %>/app.js': ['<%= c.src.js %>/**/*.coffee']
 
     watch:
       options:
@@ -69,19 +78,17 @@ module.exports = (grunt) ->
         atBegin: true
         interval: 200
       app:
-        files: ['<%= config.src.js %>/**/*.coffee']
-        tasks: ['coffee', 'notify:watch_coffee']
+        files: ['<%= c.src.js %>/**/*.coffee']
+        tasks: ['app-conpile', 'notify:watch_coffee', 'uglify']
       sass:
-        files: ['<%= config.dest.css %>/*.sass']
+        files: ['<%= c.dest.css %>/*.sass']
         tasks: ['sass-compile', 'notify:watch_sass']
-
-    concurrent:
-      compile: ['sass-compile', 'coffee', 'concat', 'uglify']
-      optimize: []
 
   require('matchdep').filterDev('grunt-*').forEach grunt.loadNpmTasks
 
   # Tasks
-  grunt.registerTask 'default', ['concurrent:compile']
+  grunt.registerTask 'app-compile', ['browserify', 'concat']
   grunt.registerTask 'sass-compile', ['sass-convert', 'sass:app']
-  grunt.registerTask 'production', ['clean', 'concurrent:compile', 'concurrent:optimize']
+
+  grunt.registerTask 'default', ['app-compile', 'sass-compile']
+  grunt.registerTask 'production', ['clean', 'default', 'uglify']
