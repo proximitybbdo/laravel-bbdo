@@ -79,7 +79,7 @@ module.exports = (grunt) ->
         interval: 200
       app:
         files: ['<%= c.src.js %>/**/*.coffee']
-        tasks: ['app-conpile', 'notify:watch_coffee', 'uglify']
+        tasks: ['app-compile', 'notify:watch_coffee', 'uglify']
       sass:
         files: ['<%= c.dest.css %>/*.sass']
         tasks: ['sass-compile', 'notify:watch_sass']
