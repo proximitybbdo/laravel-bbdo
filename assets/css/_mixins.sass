@@ -49,12 +49,19 @@
   background: url('#{$name}.png') no-repeat
   background: rgba(0,0,0,0) url('#{$name}.svg') no-repeat
 
-
 // breakpoints for MQ in the element
 
 @mixin breakpoint($point)
-  @if $point == l
+  @if $point == xxl
+    @media (min-width: 1600px)
+      @content
+
+  @if $point == xl
     @media (min-width: 1200px)
+      @content
+
+  @if $point == l
+    @media (min-width: 960px)
       @content
 
   @else if $point == m
@@ -65,12 +72,15 @@
     @media (min-width: 580px)
       @content
 
+  @else
+    @media (min-width: $point)
+      @content
 
 // generate the correct line height
 
 @mixin font-size($sizeValue: 16, $spaceValue: 1.45)
   font-size: $sizeValue + px
-  font-size: $sizeValue/16 + rem
+  font-size: ($sizeValue / 16) + rem
   line-height: $spaceValue
 
 // vertical align the unknown
@@ -93,7 +103,6 @@
   opacity: $value
   -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity="+$IEValue+")"
   filter: alpha(opacity=$IEValue)
-
 
 // hacks
 
