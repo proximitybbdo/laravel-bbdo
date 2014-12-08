@@ -43,7 +43,7 @@ module.exports = (grunt) ->
 
     browserify:
       build:
-        src: ['<%= c.src %>/**/*.coffee', '<%= c.src.tpl %>/**/*.js']
+        src: ['<%= c.src.js %>/**/*.coffee', '<%= c.src.tpl %>/**/*.js']
         dest: '<%= c.dest.js %>/app.js'
         options:
           extensions: ['.coffee', '.js']
