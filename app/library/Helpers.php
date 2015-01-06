@@ -17,7 +17,8 @@ class Helpers
       }
     }
 
-    return implode('/', $uri_keys);
+    $result = implode('/', $uri_keys);
+    return ($result == "") ? "home" : $result;
   }
 
   public static function url_lang($parts) {
