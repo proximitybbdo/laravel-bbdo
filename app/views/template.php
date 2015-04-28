@@ -51,7 +51,6 @@
     })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 
     ga('create', '<?= Config::get('app.ga'); ?>');
-    ga('set', 'nonInteraction', true); // prevent Events from influencing bounce rate
     ga('send', 'pageview');
   </script>
 </body>
