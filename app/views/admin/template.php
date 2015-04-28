@@ -20,13 +20,13 @@
 
   <div class="navbar">
     <div class="container">
-      <a class="navbar-brand" href="<?= url('admin'); ?>">Dashboard</a>
+      <a class="navbar-brand" href="<?= url('iControl'); ?>">Dashboard</a>
       <ul class="nav navbar-nav pull-right">
-        <li><a href="<?= url('admin/logout'); ?>" title="Log Out">Log out</a></li>
+        <li><a href="<?= url('iControl/logout'); ?>" title="Log Out">Log out</a></li>
       </ul>
 
       <ul class="nav navbar-nav">
-        <li><a href="<?= url('admin/'); ?>">Something</a> </li>
+        <li><a href="<?= url('iControl/'); ?>">Something</a> </li>
       </ul>
     </div>
   </div>
