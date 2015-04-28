@@ -25,8 +25,8 @@ Route::when('*', 'check_lang');
 
 Route::get('', 'HomeController@get_lang');
 Route::get('{lang}', 'HomeController@get_index');
-
-Route::group(array('prefix' => 'admin'), function() {
+/* Uncomment if needed
+Route::group(array('prefix' => 'iControl'), function() {
   Route::get('', 'AdminController@get_index');
 
   Route::get('login', 'AdminController@get_login');
@@ -34,3 +34,4 @@ Route::group(array('prefix' => 'admin'), function() {
 
   Route::get('logout', 'AdminController@get_logout');
 });
+*/
